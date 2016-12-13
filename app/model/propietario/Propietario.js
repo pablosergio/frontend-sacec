@@ -3,6 +3,7 @@
 Ext.define('sacec.model.propietario.Propietario', {
     extend: 'sacec.model.abstract.Abstract',
     fields: [
+        { name: 'propietarioId', type: 'int' },
         { name: 'nombre', type: 'string' },
         { name: 'apellido', type: 'string' },
         { name: 'celular', type: 'string' },

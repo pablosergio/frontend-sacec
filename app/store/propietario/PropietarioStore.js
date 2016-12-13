@@ -17,7 +17,7 @@ Ext.define("sacec.store.propietario.PropietarioStore", {
     this.initConfig(cfg);
     Ext.apply(this, {
       proxy: {
-          type: 'ajax',
+          type: 'rest',
           reader: {
             type: "json",
             root: "rows",
@@ -28,8 +28,8 @@ Ext.define("sacec.store.propietario.PropietarioStore", {
           writer: {
             type: 'json',
             writeAllFields: true,
-            allowSingle: false,
-            root: 'data'
+            allowSingle: true,
+            //root: 'data'
           },
           headers: {
             'Authorization': "Bearer " + _this.getLocalStorageService().get('token') 
@@ -37,14 +37,15 @@ Ext.define("sacec.store.propietario.PropietarioStore", {
           api: {
             read: this.getAppConfig().getEndpoint("propietarios").url,
             create: this.getAppConfig().getEndpoint("propietarios").url,
-            update: this.getAppConfig().getEndpoint("propietarios").url
+            update: this.getAppConfig().getEndpoint("propietarios").url,
+            destroy: this.getAppConfig().getEndpoint("propietarios").url
           },
           simpleSortMode: true
       },
       sorters : [
                 {
-                    property: 'propietario_id',
-                    direction: 'desc'
+                    property: 'propietarioId',
+                    direction: 'DESC'
                 }
       ]    
     });

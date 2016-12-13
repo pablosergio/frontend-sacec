@@ -45,7 +45,7 @@ Ext.define("sacec.service.PropietarioService", {
     if (this.isNewPropietario(propietario)) {
       this.getPropietarioStore().add(propietario);
     }
-    propietario.set("fecha_reg", new Date());
+    propietario.set("fechaRegistro", new Date());
     return this.syncPropietarioStore();
   },
 
@@ -77,7 +77,7 @@ Ext.define("sacec.service.PropietarioService", {
   },
 
   isNewPropietario: function(propietario) {
-    var esNuevo = propietario.get('propietario_id') ? false : true;
+    var esNuevo = propietario.get('propietarioId') ? false : true;
     return esNuevo;
   }
 });

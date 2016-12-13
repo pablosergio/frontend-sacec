@@ -5,25 +5,25 @@
 
 Ext.define( 'sacec.view.propietario.PropietarioMainPanel', {
     extend: 'Ext.panel.Panel',
-    //controller: 'sacec.controller.propietario.PropietarioMainPanelController',
+    controller: 'sacec.controller.propietario.PropietarioMainPanelController',
     alias: 'widget.sacec-view-propietario-main-panel',
     requires: [
         "sacec.view.propietario.PropietarioGrid",
-        //"sacec.view.propietario.PropietarioForm"
+        "sacec.view.propietario.PropietarioForm"
     ],
     title: 'Border Layout',
     layout: 'border',
     items: [{
         xtype: 'sacec-view-propietario-grid',
         region:'center',
-        width: '100%'
-    }/*,{
+        width: '70%'
+    },{
         xtype: 'sacec-view-propietario-form',
         region:'east',
-        width: '45%',
+        width: '30%',
         collapsible: true,
         itemId: 'panelCollapsiblePropietario'
-    }*/],
+    }],
 
 });
 

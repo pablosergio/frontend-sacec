@@ -2,7 +2,7 @@
 
 Ext.define("sacec.controller.propietario.PropietarioGridController", {
   extend: "sacec.controller.AbstractBaseGridController",
-  //requires: ['sglm.view.administracion.objetoEnsayo.patronTrabajo.FiltroPatronTrabajoForm'],
+  requires: ['sacec.view.propietario.PropietarioFiltroForm'],
   inject: [
     "propietarioContext",
     "propietarioService"
@@ -48,8 +48,7 @@ Ext.define("sacec.controller.propietario.PropietarioGridController", {
   
   
   onAddRecordClick: function() {
-    var nuevopropietario;
-    nuevoPropietario = Ext.create("sglm.model.propietario.Propietario", {
+    var nuevoPropietario = Ext.create("sacec.model.propietario.Propietario", {
       modelo: 'Nuevo Propietario',
       estado: 'ACTIVO'
     });
@@ -61,14 +60,45 @@ Ext.define("sacec.controller.propietario.PropietarioGridController", {
     return this.getPropietarioContext().propietarioOpened(propietario);
   },
 
+  onActionColumnClick: function(view, cell, rowIndex, columnIndex, event, propietario, row){
+    var _this = this;
+    /*if (this.getPropietario).get('departamento') !== null) {
+            return this.getNotificationService().info('Informacion', 'Acutalizar dempartamento');
+        }*/
+
+    return Ext.MessageBox.confirm("Confirmar", "¿Esta seguro de eliminar el registro?", function (button) {
+            if (button === "yes") {
+                return this.deletePropietario(propietario);
+            }
+        }, this);
+  },
+
+  deletePropietario: function (propietario) {
+        var _this = this;
+        _this.getView().getStore().remove(propietario);
+        _this.getView().getStore().sync({
+            success: function () {
+                _this.loadInitialData();
+                _this.getPropietarioContext().propietarioDeleted(propietario);
+                return _this.getNotificationService().success('Eliminar Propietario', 'El registro fue eliminado correctamente');
+            },
+            failure: function (batch, options) {
+                _this.loadInitialData();
+                return _this.getNotificationService().error('Eliminar Propietario', 'Ha ocurrido un error al intentar eliminar el registro');
+            },
+            scope: this
+
+        });
+    },
+
   onFilterGridClick: function(){
     _this = this;
-    var filterWindow = Ext.widget('sglm-abstract-filter-window', {
+    var filterWindow = Ext.widget('sacec-abstract-filter-window', {
       width: 640,
-      title: 'Filtrar Objetos de Ensayo Patron Trabajo',
+      title: 'Filtrar Propietarios',
       grid: _this.getView()
     });
-    var filtroForm = Ext.widget('sglm-view-filtro-objeto-ensayo-patron-trabajo-form'); 
+    var filtroForm = Ext.widget('sacec-view-filtro-propietario-form'); 
     filterWindow.add(filtroForm);
     filtroForm.setAllowBlankTodos(true);
     filterWindow.show();

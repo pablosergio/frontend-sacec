@@ -13,7 +13,7 @@ Ext.define("sacec.context.PropietarioContext", {
             config = {};
         }
         this.callParent(arguments);
-        return this.addEvents("initialDataLoaded", "propietarioOpened", "propietarioCreated", "propietarioCanceled");
+        return this.addEvents("initialDataLoaded", "propietarioOpened", "propietarioCreated", "propietarioCanceled", "propietarioDeleted");
     },
     /**
      * Notifies interested objects that initial data has been loaded.
@@ -51,5 +51,13 @@ Ext.define("sacec.context.PropietarioContext", {
          * @param {sglm.model.Propietario}.
          */
         return this.fireEvent("propietarioCanceled", propietario);
+    },
+
+     propietarioDeleted: function(propietario) {
+        /**
+         * @event propietarioCanceled option Propietario opened.
+         * @param {sglm.model.Propietario}.
+         */
+        return this.fireEvent("propietarioDeleted", propietario);
     }
 });

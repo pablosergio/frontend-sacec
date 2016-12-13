@@ -12,7 +12,8 @@ Ext.define("sacec.controller.propietario.PropietarioMainPanelController", {
     propietarioContext: {
       propietarioCreated: "onCollapsePanel",
       propietarioOpened: "onExpandPanel",
-      propietarioCanceled: "onCollapsePanel"
+      propietarioCanceled: "onCollapsePanel",
+      propietarioDeleted: "onCollapsePanel"
     }
   },
   control: {
@@ -20,7 +21,7 @@ Ext.define("sacec.controller.propietario.PropietarioMainPanelController", {
       boxready: "loadInitialData",
     },
 
-    panelCollapsiblepropietario: {
+    panelCollapsiblePropietario: {
 
     }
     

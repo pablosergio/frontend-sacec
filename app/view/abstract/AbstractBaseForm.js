@@ -51,7 +51,7 @@ Ext.define("sacec.view.abstract.AbstractBaseForm", {
         msgTarget: "side",
         readOnlyCls: 'DisabledClase',
         disabledCls: 'DisabledClase',
-        plugins: ['clearbutton', 'uppertextfield']
+        plugins: ['clearbutton', 'uppertextfield'],
         labelAlign: "right"
       },
       tbar: [

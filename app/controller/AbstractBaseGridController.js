@@ -3,7 +3,7 @@
 
 Ext.define("sacec.controller.AbstractBaseGridController", {
   extend: "sacec.controller.AbstractSacecController",
-  //requires: ['sglm.view.abstract.AbstractFilterWindow','sglm.view.abstract.AbstractHistoryWindow','sglm.view.historico.HistoricoMainPanel'],
+  requires: ['sacec.view.abstract.AbstractFilterWindow'],
   observe: {
     abstractContext: {
       contextFiltered: "filtrarGridBase"
@@ -17,7 +17,9 @@ Ext.define("sacec.controller.AbstractBaseGridController", {
     addRecord: {
       click: "onAddRecordClick"
     },
-
+    deleteActionColumn: {
+      click: "onActionColumnClick"
+    },
     filterGrid: {
       click: "onFilterGridClick"
     },
