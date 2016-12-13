@@ -42,6 +42,9 @@ Ext.define("sacec.config.AppConfig", {
         login: {
           proxyId: "/login"
         },
+        propietarios: {
+          proxyId: "/propietarios"
+        },
       },
       defaults: {
         urlPrefix: "http://localhost:8081/restapi",
