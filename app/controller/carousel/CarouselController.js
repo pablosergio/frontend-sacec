@@ -29,7 +29,6 @@ Ext.define('sacec.controller.carousel.CarouselController', {
             renderTo: 'carousel-div',
             listeners:{
                 keydown:function(){
-                    console.log('asdasd')
                 }
             }
         });

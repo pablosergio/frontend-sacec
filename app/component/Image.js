@@ -37,7 +37,7 @@ Ext.define('sacec.component.Image', {
 	setUpReflection: function(){
 		if (this.reflHeight > 0)
 		{	
-			this.reflection = Ext.create('sglm.component.Reflection', {
+			this.reflection = Ext.create('sacec.component.Reflection', {
 				imageHeight: this.orgHeight,
 				imageWidth: this.orgWidth,
 				image: this.image,

@@ -42,9 +42,11 @@ Ext.define('sacec.controller.menu.MainMenuController', {
                 var tbfill = Ext.widget('tbfill');
                 _this.crearMenu(_this.getView(), records);
                var tbseparator = Ext.widget('tbseparator');
-               var username = Ext.widget('button', {
-                    text: _this.getLocalStorageService().get('user').nombre.concat(' (', _this.getLocalStorageService().get('user').perfil, ')'),
-                    glyph: 0xf007    
+                //text: _this.getLocalStorageService().get('user').nombre.concat(' (', _this.getLocalStorageService().get('user').perfil, ')'),
+
+                var username = Ext.widget('button', {
+                    text: 'Pablo Sergio',
+                    glyph: 0xf007
                });
                var logout = Ext.widget('button', {
                     itemId: 'btnLogout',
@@ -52,8 +54,8 @@ Ext.define('sacec.controller.menu.MainMenuController', {
                     glyph: 0xf08b,
                     handler: function(){
                         _this.getLocalStorageService().delete('token');
-                        _this.getLocalStorageService().delete('user');
-                        _this.getLocalStorageService().delete('menu');
+                        //_this.getLocalStorageService().delete('user');
+                        //_this.getLocalStorageService().delete('menu');
                         window.location.reload()
                     }
                 });
@@ -81,7 +83,7 @@ Ext.define('sacec.controller.menu.MainMenuController', {
             if (root.raw && root.raw.menu) {
                 var subMenu = Ext.create('Ext.menu.Menu');
                 tb.add({
-                    id: root.id || root.get('id'),
+                    //id: root.id || root.get('id'),
                     text: root.text || root.get('text'),
                     iconCls: root.iconCls || root.get('iconCls'),
                     menu: subMenu,
@@ -95,7 +97,7 @@ Ext.define('sacec.controller.menu.MainMenuController', {
             }
             else {
                 tb.add({
-                    id: root.id || root.get('id'),
+                    //id: root.id || root.get('id'),
                     text: root.text || root.get('text'),
                     iconCls: root.iconCls || root.get('iconCls'),
                     menu: subMenu,

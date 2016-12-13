@@ -36,9 +36,9 @@ Ext.define('sacec.controller.login.LoginController', {
 		_this.getLoginForm().getEl().mask('Verificando credenciales....')
         return this.loginService.login(credenciales).then({
             success: function(res){
-            	    _this.getLocalStorageService().set("token", res.data.token);
-            	    _this.getLocalStorageService().set("user", res.data.usuario);
-            	    _this.getLocalStorageService().set("menu", res.data.menu);
+                    _this.getLocalStorageService().set("token", res.token);
+            	    //_this.getLocalStorageService().set("user", res.data.usuario);
+            	    //_this.getLocalStorageService().set("menu", res.data.menu);
                     button.up('window').close();
                     return window.location.reload();
                    //return Ext.widget('app-main');

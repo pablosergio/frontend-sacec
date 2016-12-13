@@ -26,14 +26,13 @@ Ext.define("sacec.config.AppConfig", {
     PRODUCTION_ENV: {
       endpoints: {
         login: {
-          proxyId: "/login/tokens"
+          proxyId: "/login"
         }
       },
       defaults: {
-        urlPrefixAuth: "http://elflwb01/sgauth",
-        urlPrefix: "http://elflwb01/sglabmed-backend",
+        urlPrefix: "http://localhost:8081/restapi",
         /* Los nombres de los reportes se encuentran en el ServicioReporte */
-        urlPrefixReporte: "http://elfsgc02:8080",
+        urlPrefixReporte: "http://170.0.0.1:8080",
         urlSuffix: "",
         dataRoot: ""
       }
@@ -41,14 +40,13 @@ Ext.define("sacec.config.AppConfig", {
     DEVELOPMENT_ENV: {
       endpoints: {
         login: {
-          proxyId: "/login/tokens"
+          proxyId: "/login"
         },
       },
       defaults: {
-        urlPrefixAuth: "http://192.168.30.84/sgauth-des",
-        urlPrefix: "http://192.168.30.84/sglabmed-backend-des",
+        urlPrefix: "http://localhost:8081/restapi",
         /* Los nombres de los reportes se encuentran en el ServicioReporte */
-        urlPrefixReporte: "http://elfsgc02:8080",
+        urlPrefixReporte: "http://170.0.0.1:8080",
         urlSuffix: "",
         dataRoot: ""
       }
@@ -82,9 +80,6 @@ Ext.define("sacec.config.AppConfig", {
     if (endpoints != null ? endpoints[endpointName] : void 0) {
       var urlPrefix =  defaults.urlPrefix;
       switch(endpointName){
-        case 'login':
-          urlPrefix = defaults.urlPrefixAuth;
-          break;
         case 'reporte':
           urlPrefix = defaults.urlPrefixReporte;
           break;

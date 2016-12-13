@@ -44,8 +44,7 @@ Ext.define("sacec.Application", {
         className: "sacec.config.AppConfig",
         parameters: [
           {
-            //environment: sacec.config.AppConfig.DEVELOPMENT_ENV
-            environment: sacec.config.AppConfig.PRE_PRODUCTION_ENV
+            environment: sacec.config.AppConfig.DEVELOPMENT_ENV
             //environment: sacec.config.AppConfig.PRODUCTION_ENV
 
           }
@@ -59,12 +58,17 @@ Ext.define("sacec.Application", {
       notificationService: "sacec.service.NotificationService",
       /* Local Storage */
       localStorageService: "sacec.service.LocalStorageService",
-      /* Menu */
-      //menuContext: "sacec.context.MenuContext",
-      //menuService: "sacec.service.MenuService",
-      //menuStore: "sacec.store.menu.MenuStore",
        /*AbstractContext*/
-      //abstractContext: "sacec.context.AbstractContext",
+      abstractContext: "sacec.context.AbstractContext",
+      /* Menu */
+      menuContext: "sacec.context.MenuContext",
+      menuService: "sacec.service.MenuService",
+      menuStore: "sacec.store.menu.MenuStore",
+      /* Propietario  */
+      propietarioContext: "sacec.context.PropietarioContext",
+      propietarioStore: "sacec.store.propietario.PropietarioStore",
+      propietarioService: "sacec.service.PropietarioService",
+      
 
     };
     return config;

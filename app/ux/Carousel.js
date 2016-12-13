@@ -498,7 +498,7 @@ Ext.define('sacec.ux.Carousel', {
 		var	me =this, items = [];
 		Ext.each(me.store.data.items, function(item, index) {
                     item.data.itemIndex = index;
-			var image = Ext.create('sglm.component.Image',{
+			var image = Ext.create('sacec.component.Image',{
 					itemIndex: index,
 					alt: item.get('alt'),
 					title: item.get('title'),
@@ -525,7 +525,7 @@ Ext.define('sacec.ux.Carousel', {
 	
 	initStore: function(){
 		if(this.store == null || this.store == undefined){
-			this.store = Ext.create('sglm.store.carousel.CarouselStore', {});
+			this.store = Ext.create('sacec.store.carousel.CarouselStore', {});
 			this.images = this.store.data.items;
 		}
 	},
@@ -567,7 +567,7 @@ Ext.define('sacec.ux.Carousel', {
 	 */
     throwException: function(method, message){
     	Ext.Error.raise({
-            sourceClass: 'sglm.ux.Carousel',
+            sourceClass: 'sacec.ux.Carousel',
             sourceMethod: method,
             msg: message
         });

@@ -2,7 +2,7 @@
  * @author Aymen ABDALLAH <aymen.abdallah@gmail.com>
  * @docauthor Aymen ABDALLAH
  */
-Ext.define('sglm.model.carousel.Carousel', {
+Ext.define('sacec.model.carousel.Carousel', {
     extend: 'Ext.data.Model',
     fields: [
         { name: 'imageSrc', type: 'string', mapping:'imageSrc' },

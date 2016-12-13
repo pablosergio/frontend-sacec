@@ -20,7 +20,7 @@ Ext.define('sacec.service.LoginService', {
                         params: credenciales,
                         method: 'POST',
                         success: function ( response, options ) {
-                                var res = Ext.JSON.decode( response.responseText ); 
+                                var res = Ext.JSON.decode( response.responseText );
                                 if (res.success) {
                                         var res =   Ext.JSON.decode( response.responseText );
                                         deferred.resolve(res); 
@@ -29,8 +29,8 @@ Ext.define('sacec.service.LoginService', {
                                         deferred.reject(res.msg); 
                                 } 
                         }, 
-                        failure: function ( response, options ) { 
-                                deferred.reject(); 
+                        failure: function ( response, options ) {
+                                deferred.reject(response.responseText);
                         } 
                 }); 
                  

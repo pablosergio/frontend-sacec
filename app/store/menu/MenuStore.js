@@ -1,8 +1,8 @@
-Ext.define("sglm.store.menu.MenuStore", {
+Ext.define("sacec.store.menu.MenuStore", {
   extend: "Ext.data.ArrayStore",
   inject: ["localStorageService"],
-  requires: ["sglm.model.menu.Root"],
-  model: "sglm.model.menu.Root",
+  requires: ["sacec.model.menu.Root"],
+  model: "sacec.model.menu.Root",
   autoLoad: false,
   proxy: {
     type: "memory"
@@ -18,7 +18,9 @@ Ext.define("sglm.store.menu.MenuStore", {
   },
 
   getMenuFromLocalStorage: function(){
-    var menu = this.localStorageService.get('menu');
+    var token = this.localStorageService.get('token');
+    var jwtService = Ext.create('sacec.service.JwtService');
+    var menu =  jwtService.decodeToken(token).menu;
     var menuPrincipal = this.construirMenu(menu);
     return menuPrincipal;
   },
@@ -27,9 +29,9 @@ Ext.define("sglm.store.menu.MenuStore", {
     var _this = this;
     var menuPrincipal = [];
     Ext.each(menu, function(record){
-      var opcion = Ext.create('sglm.model.menu.Opcion', {
-        text: record.titulo,
-        iconCls: record.iconcls,
+      var opcion = Ext.create('sacec.model.menu.Opcion', {
+        text: record.opcion,
+        iconCls: record.icono,
         className: record.href,
         alias: record.alias,
         menu: record.submenu ? _this.construirMenu(record.submenu) : null
