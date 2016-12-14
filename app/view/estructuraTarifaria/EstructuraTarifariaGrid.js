@@ -2,29 +2,34 @@
  * Created by palvarado on 12/12/2016.
  */
 
-Ext.define("sacec.view.departamento.DepartamentoGrid", {
+Ext.define("sacec.view.estructuraTarifaria.EstructuraTarifariaGrid", {
     extend: "sacec.view.abstract.AbstractBaseGrid",
-    alias: "widget.sacec-view-departamento-grid",
-    controller: "sacec.controller.departamento.DepartamentoGridController",
-    inject: ["departamentoStore"],
+    alias: "widget.sacec-view-estructura-tarifaria-grid",
+    controller: "sacec.controller.estructuraTarifaria.EstructuraTarifariaGridController",
+    inject: ["estructuraTarifariaStore"],
     config: {
-        departamentoStore: null
+        estructuraTarifariaStore: null
     },
     initComponent: function() {
         var _this = this;
         Ext.apply(this, {
-            title: " Departamentos",
-            store: this.getDepartamentoStore(),
+            title: "Estructura Tarifaria",
+            store: this.getEstructuraTarifariaStore(),
             columns: [
                 {
-                    header: "Nombre",
-                    dataIndex: "nombre",
+                    header: "Tarifa",
+                    dataIndex: "tipoTarifa",
                     flex: 1,
                     align: 'center',
                     renderer: function(value, metaData, record, row, col, store, gridView) {
                         metaData.tdAttr = "data-qtip='" + value + "'";
                         return value;
                     }
+                },  {
+                    header: "Gestion",
+                    dataIndex: "gestion",
+                    flex: 1,
+                    align: 'center',
                 }, {
                     xtype: 'templatecolumn',
                     header: "Modelo",
@@ -35,17 +40,17 @@ Ext.define("sacec.view.departamento.DepartamentoGrid", {
                          '<strong>Superficie:</strong> {modeloDepartamento.superficie}</br>' +
                          '<strong>Dormitorios:</strong> {modeloDepartamento.dormitorios}' 
                 }, {
-                    xtype: 'templatecolumn',
-                    header: "Propietario",
-                    dataIndex: "propietarioId",
+                    header: "Precio",
+                    dataIndex: "precio",
                     flex: 1,
-                    align: 'left',
-                    tpl: '<strong>Nombre:</strong> {propietario.nombre} {propietario.apellido}</br>' +
-                         '<strong>Celular:</strong> {propietario.celular}</br>' +
-                         '<strong>E-mail:</strong> {propietario.email}' 
+                    align: 'center',
+                    renderer: function(value, metaData, record, row, col, store, gridView) {
+                        metaData.tdAttr = "data-qtip='" + value + "'";
+                        return value + ' Bs';
+                    }
                 }, {
-                    header: "Habitantes",
-                    dataIndex: "cantidadHabitantes",
+                    header: "Descripcion",
+                    dataIndex: "descripcion",
                     flex: 1,
                     align: 'center',
                     renderer: function(value, metaData, record, row, col, store, gridView) {

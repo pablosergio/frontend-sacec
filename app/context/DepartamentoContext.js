@@ -13,7 +13,7 @@ Ext.define("sacec.context.DepartamentoContext", {
             config = {};
         }
         this.callParent(arguments);
-        return this.addEvents("initialDataLoaded", "departamentoOpened");
+       return this.addEvents("initialDataLoaded", "departamentoOpened", "departamentoCreated", "departamentoCanceled", "departamentoDeleted");
     },
     /**
      * Notifies interested objects that initial data has been loaded.
@@ -26,14 +26,38 @@ Ext.define("sacec.context.DepartamentoContext", {
         return this.fireEvent("initialDataLoaded");
     },
     /**
-     * Notified interested objects that a una option Departamento is being opened.
+     * Notified interested objects that a una option departamento is being opened.
      */
 
     departamentoOpened: function(departamento) {
         /**
-         * @event optionOpened option Departamento opened.
-         * @param {sglm.model.Departamento.Item}.
+         * @event departamentoOpened option departamento opened.
+         * @param {sglm.model.departamento}.
          */
-        return this.fireEvent("departamentoOpened", departamento);
+       return this.fireEvent("departamentoOpened", departamento);
+    },
+
+     departamentoCreated: function(departamento) {
+        /**
+         * @event departamentoCreated option departamento opened.
+         * @param {sglm.model.departamento}.
+         */
+       return this.fireEvent("departamentoCreated", departamento);
+    },
+
+     departamentoCanceled: function(departamento) {
+        /**
+         * @event departamentoCanceled option departamento opened.
+         * @param {sglm.model.departamento}.
+         */
+       return this.fireEvent("departamentoCanceled", departamento);
+    },
+
+     departamentoDeleted: function(departamento) {
+        /**
+         * @event departamentoCanceled option departamento opened.
+         * @param {sglm.model.departamento}.
+         */
+       return this.fireEvent("departamentoDeleted", departamento);
     }
 });

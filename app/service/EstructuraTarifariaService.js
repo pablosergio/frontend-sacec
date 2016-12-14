@@ -1,13 +1,13 @@
 /* Desarrollado por Pablo Sergio Alvarado G. */
 
-Ext.define("sacec.service.DepartamentoService", {
+Ext.define("sacec.service.EstructuraTarifariaService", {
   inject: [
-    "departamentoStore", 
+    "estructuraTarifariaStore", 
     "localStorageService", 
     "appConfig"
   ],
   config: {
-    departamentoStore: null,
+    estructuraTarifariaStore: null,
     localStorageService: null,
     appConfig: null
   },
@@ -23,11 +23,11 @@ Ext.define("sacec.service.DepartamentoService", {
     //return Deft.Chain.parallel([this.loadProbabilities, this.loadRevenueImpacts, this.loadAffectedItems], this);
   },
 
-  loadDepartamentos: function(params) {
+  loadEstructuraTarifaria: function(params) {
     var deferred;
     deferred = Ext.create("Deft.promise.Deferred");
-    this.getDepartamentoStore().proxy.extraParams = params;
-    this.getDepartamentoStore().load({
+    this.getEstructuraTarifariaStore().proxy.extraParams = params;
+    this.getEstructuraTarifariaStore().load({
       callback: function(records, operation, success) {
         if (success) {
           return deferred.resolve(records);
@@ -41,23 +41,23 @@ Ext.define("sacec.service.DepartamentoService", {
   },
 
 
-  saveDepartamento: function(departamento) {
-    if (this.isNewDepartamento(departamento)) {
-      this.getDepartamentoStore().add(departamento);
+  saveEstructuraTarifaria: function(estructuraTarifaria) {
+    if (this.isNewEstructuraTarifaria(estructuraTarifaria)) {
+      this.getEstructuraTarifariaStore().add(estructuraTarifaria);
     }
-    departamento.set("fechaRegistro", new Date());
-    return this.syncDepartamentoStore();
+    estructuraTarifaria.set("fechaRegistro", new Date());
+    return this.syncEstructuraTarifariaStore();
   },
 
-  deleteDepartamento: function(departamento) {
-    this.getDepartamentoStore().remove(departamento);
-    return this.syncDepartamentoStore();
+  deleteEstructuraTarifaria: function(estructuraTarifaria) {
+    this.getEstructuraTarifariaStore().remove(estructuraTarifaria);
+    return this.syncEstructuraTarifariaStore();
   },
 
-  syncDepartamentoStore: function() {
+  syncEstructuraTarifariaStore: function() {
     var deferred;
     deferred = Ext.create("Deft.promise.Deferred");
-    this.getDepartamentoStore().sync({
+    this.getEstructuraTarifariaStore().sync({
       success: function(batch, options) {
         var res = Ext.JSON.decode( batch.operations[0].response.responseText);
         if(res.success){
@@ -68,7 +68,7 @@ Ext.define("sacec.service.DepartamentoService", {
         
       },
       failure: function(batch, options) {
-        this.getDepartamentoStore().rejectChanges();
+        this.getEstructuraTarifariaStore().rejectChanges();
         return deferred.reject(batch.exceptions[0].error);
       },
       scope: this
@@ -76,8 +76,8 @@ Ext.define("sacec.service.DepartamentoService", {
     return deferred.promise;
   },
 
-  isNewDepartamento: function(departamento) {
-    var esNuevo = departamento.get('departamentoId') ? false : true;
+  isNewEstructuraTarifaria: function(estructuraTarifaria) {
+    var esNuevo = estructuraTarifaria.get('estructuraTarifariaId') ? false : true;
     return esNuevo;
   }
 });

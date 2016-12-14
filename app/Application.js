@@ -72,6 +72,14 @@ Ext.define("sacec.Application", {
       modeloDepartamentoContext: "sacec.context.ModeloDepartamentoContext",
       modeloDepartamentoStore: "sacec.store.modeloDepartamento.ModeloDepartamentoStore",
       modeloDepartamentoService: "sacec.service.ModeloDepartamentoService",
+      /*  Departamento  */
+      departamentoContext: "sacec.context.DepartamentoContext",
+      departamentoStore: "sacec.store.departamento.DepartamentoStore",
+      departamentoService: "sacec.service.DepartamentoService",
+      /*  Estructura Tarifaria  */
+      estructuraTarifariaContext: "sacec.context.EstructuraTarifariaContext",
+      estructuraTarifariaStore: "sacec.store.estructuraTarifaria.EstructuraTarifariaStore",
+      estructuraTarifariaService: "sacec.service.EstructuraTarifariaService",
 
     };
     return config;

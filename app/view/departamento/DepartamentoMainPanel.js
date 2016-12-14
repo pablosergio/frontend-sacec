@@ -14,11 +14,11 @@ Ext.define( 'sacec.view.departamento.DepartamentoMainPanel', {
     title: 'Border Layout',
     layout: 'border',
     items: [{
-        xtype: 'sglm-view-departamento-grid',
+        xtype: 'sacec-view-departamento-grid',
         region:'center',
         width: '70%'
     },{
-        xtype: 'sglm-view-departamento-form',
+        xtype: 'sacec-view-departamento-form',
         region:'east',
         width: '30%',
         collapsible: true,
