@@ -20,7 +20,7 @@ Ext.define("sacec.view.login.Login", {
     },
     labelStyle: 'font-weight:bold;font-size:10px!important;',
     glyph:0xf023,
-    title: 'Login',
+    title: 'Sistema de Administracion y Cobranza Expensas',
     closeAction: 'hide',
     closable: false,
     config: {

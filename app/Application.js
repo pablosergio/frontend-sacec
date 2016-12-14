@@ -68,7 +68,10 @@ Ext.define("sacec.Application", {
       propietarioContext: "sacec.context.PropietarioContext",
       propietarioStore: "sacec.store.propietario.PropietarioStore",
       propietarioService: "sacec.service.PropietarioService",
-      
+      /* Modelo Departamento  */
+      modeloDepartamentoContext: "sacec.context.ModeloDepartamentoContext",
+      modeloDepartamentoStore: "sacec.store.modeloDepartamento.ModeloDepartamentoStore",
+      modeloDepartamentoService: "sacec.service.ModeloDepartamentoService",
 
     };
     return config;

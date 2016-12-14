@@ -45,6 +45,9 @@ Ext.define("sacec.config.AppConfig", {
         propietarios: {
           proxyId: "/propietarios"
         },
+        modeloDepartamentos: {
+          proxyId: "/modelodepartamentos"
+        },
       },
       defaults: {
         urlPrefix: "http://localhost:8081/restapi",

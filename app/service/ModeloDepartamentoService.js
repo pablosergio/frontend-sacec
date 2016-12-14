@@ -1,13 +1,13 @@
 /* Desarrollado por Pablo Sergio Alvarado G. */
 
-Ext.define("sglm.service.PropietarioService", {
+Ext.define("sacec.service.ModeloDepartamentoService", {
   inject: [
-    "propietarioStore", 
+    "modeloDepartamentoStore", 
     "localStorageService", 
     "appConfig"
   ],
   config: {
-    propietarioStore: null,
+    modeloDepartamentoStore: null,
     localStorageService: null,
     appConfig: null
   },
@@ -23,11 +23,11 @@ Ext.define("sglm.service.PropietarioService", {
     //return Deft.Chain.parallel([this.loadProbabilities, this.loadRevenueImpacts, this.loadAffectedItems], this);
   },
 
-  loadPropietarios: function(params) {
+  loadModeloDepartamentos: function(params) {
     var deferred;
     deferred = Ext.create("Deft.promise.Deferred");
-    this.getPropietarioStore().proxy.extraParams = params;
-    this.getPropietarioStore().load({
+    this.getModeloDepartamentoStore().proxy.extraParams = params;
+    this.getModeloDepartamentoStore().load({
       callback: function(records, operation, success) {
         if (success) {
           return deferred.resolve(records);
@@ -41,23 +41,23 @@ Ext.define("sglm.service.PropietarioService", {
   },
 
 
-  savePropietario: function(propietario) {
-    if (this.isNewPropietario(propietario)) {
-      this.getPropietarioStore().add(propietario);
+  saveModeloDepartamento: function(modeloDepartamento) {
+    if (this.isNewModeloDepartamento(modeloDepartamento)) {
+      this.getModeloDepartamentoStore().add(modeloDepartamento);
     }
-    propietario.set("fecha_reg", new Date());
-    return this.syncPropietarioStore();
+    modeloDepartamento.set("fechaRegistro", new Date());
+    return this.syncModeloDepartamentoStore();
   },
 
-  deletePropietario: function(propietario) {
-    this.getPropietarioStore().remove(propietario);
-    return this.syncPropietarioStore();
+  deleteModeloDepartamento: function(modeloDepartamento) {
+    this.getModeloDepartamentoStore().remove(modeloDepartamento);
+    return this.syncModeloDepartamentoStore();
   },
 
-  syncPropietarioStore: function() {
+  syncModeloDepartamentoStore: function() {
     var deferred;
     deferred = Ext.create("Deft.promise.Deferred");
-    this.getPropietarioStore().sync({
+    this.getModeloDepartamentoStore().sync({
       success: function(batch, options) {
         var res = Ext.JSON.decode( batch.operations[0].response.responseText);
         if(res.success){
@@ -68,7 +68,7 @@ Ext.define("sglm.service.PropietarioService", {
         
       },
       failure: function(batch, options) {
-        this.getPropietarioStore().rejectChanges();
+        this.getModeloDepartamentoStore().rejectChanges();
         return deferred.reject(batch.exceptions[0].error);
       },
       scope: this
@@ -76,8 +76,8 @@ Ext.define("sglm.service.PropietarioService", {
     return deferred.promise;
   },
 
-  isNewPropietario: function(propietario) {
-    var esNuevo = propietario.get('propietario_id') ? false : true;
+  isNewModeloDepartamento: function(modeloDepartamento) {
+    var esNuevo = modeloDepartamento.get('modeloDepartamentoId') ? false : true;
     return esNuevo;
   }
 });

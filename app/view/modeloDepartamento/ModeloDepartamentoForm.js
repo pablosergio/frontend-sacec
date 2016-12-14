@@ -2,16 +2,15 @@
  * Created by palvarado on 12/12/2016.
  */
 
-Ext.define("sacec.view.departamento.DepartamentoForm", {
+Ext.define("sacec.view.modeloDepartamento.ModeloDepartamentoForm", {
     extend: "sacec.view.abstract.AbstractBaseForm",
-    alias: "widget.sacec-view-departamento-form",
-    //controller: "sacec.controller.departamento.DepartamentoFormController",
+    alias: "widget.sacec-view-modelo-departamento-form",
+    controller: "sacec.controller.modeloDepartamento.ModeloDepartamentoFormController",
     layout: "anchor",
     anchor: "100% 100%",
     initComponent: function () {
         var _this = this;
-        _this.modeloStore = new store();
-
+        
         Ext.apply(this, {
             bodyStyle: {
                 background: '#F0F4F9',
@@ -20,26 +19,24 @@ Ext.define("sacec.view.departamento.DepartamentoForm", {
                 border:'1px solid #E4E4E4'
               },
             labelStyle: 'font-weight:bold;font-size:10px!important;',
-            iconCls: 'server_add',
+            iconCls: 'server_chart',
             items: [
                 {
                     xtype: "fieldset",
-                    title: "Datos Generales",
+                    title: "Datos del Modelo",
                     collapsible: false,
-                    layout: "column",
-                    columns: 2,
                     margin: 20,
                     items: [
                         {
                             xtype: "combobox",
-                            name: "modelo",
-                            fieldLabel: "Modelo",
+                            name: "tipo",
+                            fieldLabel: "Tipo",
                             labelAlign: 'right',
                             labelWidth: 120,
                             labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            store: _this.modeloStore,
-                            displayField: "valor",
-                            valueField: "valor",
+                            store: ['A', 'B', 'C', 'COMERCIAL'],
+                            displayField: "value",
+                            valueField: "value",
                             emptyText: "Seleccionar...",
                             plugins: ['clearbutton'],
                             allowBlank: false,
@@ -47,150 +44,38 @@ Ext.define("sacec.view.departamento.DepartamentoForm", {
                             afterLabelTextTpl: this.getRequiredStyle(),
                             margin: 10
                         }, {
-                            xtype: "textfield",
-                            name: "modelo",
-                            fieldLabel: "Modelo",
-                            labelAlign: 'right',
-                            labelWidth: 120,
-                            labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            plugins: ['clearbutton', 'uppertextfield'],
-                            allowBlank: false,
-                            fieldStyle: 'text-transform:uppercase',
-                            maxLength: 30,
-                            enforceMaxLength: true,
-                            afterLabelTextTpl: this.getRequiredStyle(),
-                            margin: "0 0 10 0"
-                        },  {
-                            xtype: "textfield",
-                            name: "serie",
-                            fieldLabel: "Serie",
-                            labelAlign: 'right',
-                            labelWidth: 120,
-                            labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            plugins: ['clearbutton'],
-                            //allowBlank: false,
-                            fieldStyle: 'text-transform:uppercase',
-                            maxLength: 50,
-                            enforceMaxLength: true,
-                            //afterLabelTextTpl: this.getRequiredStyle(),
-                            margin: "0 0 10 0"
-                        }, {
-                            xtype: "textarea",
-                            name: "desc_modelo",
-                            fieldLabel: "Descripcion Modelo",
-                            labelAlign: 'right',
-                            labelWidth: 120,
-                            labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            fieldStyle: 'text-transform:uppercase',
-                            maxLength: 150,
-                            enforceMaxLength: true,
-                            plugins: ['clearbutton', 'uppertextfield'],
-                            height: 50,
-                            grow: true,
-                            margin: "0 0 10 0"
-                        }
-                    ]
-                }, {
-                    xtype: "fieldset",
-                    title: "Caracteristicas Técnicas",
-                    collapsible: false,
-                    columns: 2,
-                    margin: 20,
-                    minHeight: 250,
-                    layout: "column",
-                    items: [
-                        {
                             xtype: "numberfield",
-                            name: "incertidumbre",
-                            fieldLabel: "Incertidumbre",
+                            name: "superficie",
+                            fieldLabel: "Superficie (m2)",
                             labelAlign: 'right',
                             labelWidth: 120,
                             labelStyle: 'font-weight:bold;font-size:10px!important;',
                             emptyText: "Ingresar...",
                             plugins: ['clearbutton'],
                             allowBlank: false,
+                            afterLabelTextTpl: this.getRequiredStyle(),
+                            margin: 10,
+                            minValue: 1,
+                            maxValue: 999,
+                            maxLength: 6,
+                            enforceMaxLength: true,
+                        }, {
+                            xtype: "numberfield",
+                            name: "dormitorios",
+                            fieldLabel: "Dormitorios",
+                            labelAlign: 'right',
+                            labelWidth: 120,
+                            labelStyle: 'font-weight:bold;font-size:10px!important;',
+                            emptyText: "Ingresar...",
+                            plugins: ['clearbutton'],
+                            margin: 10,
                             minValue: 0,
-                            maxValue: 99999.99,
-                            maxLength: 8,
-                            enforceMaxLength: true,
-                            afterLabelTextTpl: this.getRequiredStyle(),
-                            margin: "5 0 10 0"
-                        }, {
-                            xtype: "combobox",
-                            name: "clase",
-                            fieldLabel: "Clase",
-                            labelAlign: 'right',
-                            labelWidth: 120,
-                            labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            store: this.getListaClasePatronTrabajo().load({params: {condicion: 'CLASE_PATRON'}}),
-                            queryMode: "local",
-                            displayField: "valor",
-                            valueField: "valor",
-                            emptyText: "Seleccionar...",
-                            plugins: ['clearbutton'],
-                            allowBlank: false,
-                            forceSelection: true,
-                            afterLabelTextTpl: this.getRequiredStyle(),
-                            margin: "5 0 10 0"
-                        }, {
-                            xtype: "textfield",
-                            name: "nro_certificado_cal",
-                            fieldLabel: "Nro. Certificado Cal.",
-                            labelAlign: 'right',
-                            labelWidth: 120,
-                            labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            emptyText: "Ingresar...",
-                            fieldStyle: 'text-transform:uppercase',
-                            maxLength: 50,
-                            enforceMaxLength: true,
-                            plugins: ['clearbutton', 'uppertextfield'],
-                            allowBlank: false,
-                            afterLabelTextTpl: this.getRequiredStyle(),
-                            margin: "0 0 10 0"
-                        }, {
-                            xtype: "datefield",
-                            name: "fecha_certificado_cal",
-                            fieldLabel: "Fecha Certificado Cal.",
-                            labelAlign: 'right',
-                            labelWidth: 120,
-                            labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            emptyText: "Ingresar...",
-                            plugins: ['clearbutton'],
-                            allowBlank: false,
-                            afterLabelTextTpl: this.getRequiredStyle(),
-                            margin: "0 0 10 0"
-                        },  {
-                            xtype: "numberfield",
-                            name: "decimales",
-                            fieldLabel: "Candidad Decimales",
-                            labelAlign: 'right',
-                            labelWidth: 120,
-                            labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            emptyText: "Ingresar...",
-                            plugins: ['clearbutton'],
-                            maxValue: 99,
-                            enforceMaxLength: true,
+                            maxValue: 10,
                             maxLength: 2,
-                            margin: "0 0 10 0"
-                        }, {
-                            xtype: "combobox",
-                            itemId: "comboEstado",
-                            name: "estado",
-                            fieldLabel: "Estado",
-                            labelAlign: 'right',
-                            labelWidth: 120,
-                            labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            store: this.getListaEstado().load({params: {condicion: 'ESTADOS_MOD'}}),
-                            queryMode: "local",
-                            displayField: "valor",
-                            valueField: "valor",
-                            emptyText: "Seleccionar...",
-                            //plugins: ['clearbutton'],
-                            forceSelection: true,
-                            margin: "0 0 10 0"
+                            enforceMaxLength: true,
                         }
                     ]
-                }
+                } 
             ]
         });
         return this.callParent(arguments);

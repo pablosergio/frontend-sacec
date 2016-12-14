@@ -1,12 +1,11 @@
 /* Desarrollado por Pablo Sergio Alvarado G. */
 
-Ext.define('sglm.model.propietario.Propietario', {
-    extend: 'sglm.model.abstract.Abstract',
+Ext.define('sacec.model.modeloDepartamento.ModeloDepartamento', {
+    extend: 'sacec.model.abstract.Abstract',
     fields: [
-        { name: 'nombre', type: 'string' },
-        { name: 'apellido', type: 'string' },
-        { name: 'celular', type: 'string' },
-        { name: 'telefono', type: 'string' },
-        { name: 'email', type: 'string' }
+    	{ name: 'modeloDepartamentoId', type: 'int' },
+    	{ name: 'tipo', type: 'string' },
+        { name: 'superficie', type: 'decimal' },
+        { name: 'dormitorios', type: 'int' },
     ]
 });

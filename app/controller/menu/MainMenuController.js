@@ -41,11 +41,12 @@ Ext.define('sacec.controller.menu.MainMenuController', {
                 });
                 var tbfill = Ext.widget('tbfill');
                 _this.crearMenu(_this.getView(), records);
-               var tbseparator = Ext.widget('tbseparator');
-                //text: _this.getLocalStorageService().get('user').nombre.concat(' (', _this.getLocalStorageService().get('user').perfil, ')'),
-
+                var tbseparator = Ext.widget('tbseparator');
+                var token = _this.localStorageService.get('token');
+                var jwtService = Ext.create('sacec.service.JwtService');
+                var _username =  jwtService.decodeToken(token).username;    
                 var username = Ext.widget('button', {
-                    text: 'Pablo Sergio',
+                    text: _username,
                     glyph: 0xf007
                });
                var logout = Ext.widget('button', {

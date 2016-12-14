@@ -11,29 +11,25 @@ Ext.define('sacec.store.carousel.CarouselStore', {
     model: 'sacec.model.carousel.Carousel',
 
     data: [{
-			imageSrc:"./resources/images/logo.png",
-			title:"Laboratorio de Mediciones Electricas",
-			alt: "Sistema de Gestion de Laboratorio de Medidas"
-		}, {
-			imageSrc:"./resources/images/equipos_mediciones_electricas.jpg",
-			title:"Equipos Mediciones",
-			alt: "Equipos Mediciones Electricas"
+			imageSrc:"./resources/images/condominio-alamos.jpg",
+			title:"Condominio Familiar Moderno",
+			alt: "Condominio Familiar Moderno"
 		},{
-			imageSrc:"./resources/images/hidroelevador.jpg",
-			title:"hidroelevador",
-			alt: "Hidroelevador"
+			imageSrc:"./resources/images/conserjeria.JPG",
+			title:"Servicio de Conserjeria",
+			alt: "Servicio de Conserjeria"
 		},{
-			imageSrc:"./resources/images/banca_medidores.jpg",
-			title:"Banca de Calibracion Medidores",
-			alt: "Banca de Calibracion Medidores"
+			imageSrc:"./resources/images/servicio-limpieza.jpg",
+			title:"Servicio de Limpieza",
+			alt: "Servicio de Limpieza"
 		},{
-			imageSrc:"./resources/images/medidor_electronico.jpg",
-			title:"Medidor Electronico",
-			alt: "Medidor Electronico"
+			imageSrc:"./resources/images/salon-eventos.jpg",
+			title:"Salon de Eventos",
+			alt: "Salon de Eventos"
 		},{
-			imageSrc:"./resources/images/registrador_trifasico.jpg",
-			title:"Registrador Trifasico",
-			alt: "Registrador Trifasico"
+			imageSrc:"./resources/images/parrillero.jpg",
+			title:"Parrillero ",
+			alt: "Parrillero"
 		}
 	]
 });

@@ -3,26 +3,26 @@
  */
 /* Desarrollado por Pablo Sergio Alvarado G. */
 
-Ext.define( 'sacec.view.departamento.DepartamentoMainPanel', {
+Ext.define( 'sacec.view.modeloDepartamento.ModeloDepartamentoMainPanel', {
     extend: 'Ext.panel.Panel',
-    //controller: 'sacec.controller.departamento.DepartamentoMainPanelController',
-    alias: 'widget.sacec-view-departamento-main-panel',
+    controller: 'sacec.controller.modeloDepartamento.ModeloDepartamentoMainPanelController',
+    alias: 'widget.sacec-view-modelo-departamento-main-panel',
     requires: [
-        "sacec.view.departamento.DepartamentoGrid",
-        "sacec.view.departamento.DepartamentoForm"
+        "sacec.view.modeloDepartamento.ModeloDepartamentoGrid",
+        "sacec.view.modeloDepartamento.ModeloDepartamentoForm"
     ],
     title: 'Border Layout',
     layout: 'border',
     items: [{
-        xtype: 'sglm-view-departamento-grid',
+        xtype: 'sacec-view-modelo-departamento-grid',
         region:'center',
-        width: '55%'
+        width: '70%'
     },{
-        xtype: 'sglm-view-departamento-form',
+        xtype: 'sacec-view-modelo-departamento-form',
         region:'east',
-        width: '45%',
+        width: '30%',
         collapsible: true,
-        itemId: 'panelCollapsibleDepartamento'
+        itemId: 'panelCollapsibleModeloDepartamento'
     }],
 
 });

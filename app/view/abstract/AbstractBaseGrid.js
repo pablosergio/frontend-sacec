@@ -127,26 +127,27 @@ Ext.define('sacec.view.abstract.AbstractBaseGrid', {
                 sortable: false
             }
         ], me.columns, [
-            {
+            /*{
                 text: 'Usuario',
                 width: 90,
                 align: 'center',
                 dataIndex: 'login_usr',
-            },
+            },*/
             {
                 xtype: 'datecolumn',
                 text: 'Fecha Registro',
-                width: 100,
-                dataIndex: 'fecha_reg',
+                width: 120,
+                dataIndex: 'fechaRegistro',
                 format: 'd-m-Y H:i',
-                filter: true
+                filter: true,
+                align: 'center'
             },
-            {
+            /*{
                 text: 'Estado',
                 width: 80,
                 align: 'center',
                 dataIndex: 'estado',
-            },
+            },*/
             {
 	            xtype: "actioncolumn",
 	            itemId: "deleteActionColumn",

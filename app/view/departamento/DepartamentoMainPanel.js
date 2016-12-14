@@ -5,7 +5,7 @@
 
 Ext.define( 'sacec.view.departamento.DepartamentoMainPanel', {
     extend: 'Ext.panel.Panel',
-    //controller: 'sacec.controller.departamento.DepartamentoMainPanelController',
+    controller: 'sacec.controller.departamento.DepartamentoMainPanelController',
     alias: 'widget.sacec-view-departamento-main-panel',
     requires: [
         "sacec.view.departamento.DepartamentoGrid",
@@ -16,11 +16,11 @@ Ext.define( 'sacec.view.departamento.DepartamentoMainPanel', {
     items: [{
         xtype: 'sglm-view-departamento-grid',
         region:'center',
-        width: '55%'
+        width: '70%'
     },{
         xtype: 'sglm-view-departamento-form',
         region:'east',
-        width: '45%',
+        width: '30%',
         collapsible: true,
         itemId: 'panelCollapsibleDepartamento'
     }],
