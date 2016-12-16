@@ -80,7 +80,19 @@ Ext.define("sacec.Application", {
       estructuraTarifariaContext: "sacec.context.EstructuraTarifariaContext",
       estructuraTarifariaStore: "sacec.store.estructuraTarifaria.EstructuraTarifariaStore",
       estructuraTarifariaService: "sacec.service.EstructuraTarifariaService",
-
+      /*  Deudas */
+      deudaContext: "sacec.context.DeudaContext",
+      deudaStore: "sacec.store.deuda.DeudaStore",
+      deudaService: "sacec.service.DeudaService",
+      /*  Pago */
+      pagoContext: "sacec.context.PagoContext",
+      pagoStore: "sacec.store.pago.PagoStore",
+      pagoService: "sacec.service.PagoService",
+      /*  Egreso */
+      egresoContext: "sacec.context.EgresoContext",
+      egresoStore: "sacec.store.egreso.EgresoStore",
+      egresoService: "sacec.service.EgresoService",
+   
     };
     return config;
   },

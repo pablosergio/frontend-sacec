@@ -25,7 +25,7 @@ Ext.define("sacec.controller.departamento.DepartamentoGridController", {
   loadInitialData: function() {
     var _this = this;
     this.getView().setLoading(true);
-    return this.getDepartamentoService().loadDepartamentos({estado: 'ACTIVO'}).then({
+    return this.getDepartamentoService().loadDepartamentos({}).then({
       failure: function(errorMessage) {
         return _this.getNotificationService().error("Error", errorMessage);
       }

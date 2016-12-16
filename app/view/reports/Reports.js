@@ -27,10 +27,14 @@ Ext.define('sacec.view.reports.Reports', {
      * ]
      */
     parametros: {},
-    inject: ["appConfig", "localStorageService", "commonService", "notificationService"],
+    inject: [
+      "appConfig", 
+      "localStorageService", 
+      "notificationService"
+    ],
     server: 'jasperserver',
     rest: 'rest_v2/reports',
-    routeReport: '/reports/SGLABMED/',
+    routeReport: '/reports/sacec/',
     src: null,
     onlyPrint: false,
     grids: [],
@@ -40,7 +44,7 @@ Ext.define('sacec.view.reports.Reports', {
         ignorePagination: false
     },
     config: {
-        commonService: null, notificationService: null
+        notificationService: null
     },
     mostrarBotonCerrar : false,
     fnCerrar : null,
@@ -74,15 +78,11 @@ Ext.define('sacec.view.reports.Reports', {
     },
     show: function () {
         var me = this;
-        me.content = Ext.create("sacec.view.administracion.plantillaCalibracionEquipo.Window", {
+        me.content = Ext.widget("window", {
             maxWidth: me.MAXANCHO,
             maxHeight: me.MAXALTO,
             mostrarBotonCerrar : me.mostrarBotonCerrar,
             fnCerrar : me.fnCerrar,
-            // botones: me.getBotones(),
-            // width : me.width + 10,
-            // height : me.height + 10,
-            // maximizable: true,
             items: [
                 me
             ]
@@ -175,7 +175,6 @@ Ext.define('sacec.view.reports.Reports', {
         var url = me.appConfig.getEndpoint("reporte").url;
         var environmentConfig = me.appConfig[me.appConfig.getEnvironment()];
         var host = environmentConfig.defaults.urlPrefixReporte;
-        console.log(host);
         var ruta = host + '/' + me.server + '/' + me.rest + '' + me.routeReport + '' + me.ruta + '.' + tipo + '?';
         var objs = Ext.apply({}, me.parametros, me.params);
         var argumentos = "";
@@ -191,7 +190,6 @@ Ext.define('sacec.view.reports.Reports', {
             me.print();
         }
         else {
-            // me.getCommonService().
             me.setLoading(true);
             return me.getCommonService().getRequest(me.beforePrint.ruta, me.beforePrint.method, me.beforePrint.params).then({
                 success: function (res) {
@@ -209,7 +207,7 @@ Ext.define('sacec.view.reports.Reports', {
     },
     print: function () {
         var me = this;
-        w = window.open("viewer/viewer.html?file=" + me.src);
+        var w = window.open("viewer/viewer.html?file=" + me.src);
         w.onafterprint = function(){
             me.onAfterPrint();
 

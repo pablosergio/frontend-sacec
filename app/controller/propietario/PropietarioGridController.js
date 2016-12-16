@@ -25,7 +25,7 @@ Ext.define("sacec.controller.propietario.PropietarioGridController", {
   loadInitialData: function() {
     var _this = this;
     this.getView().setLoading(true);
-    return this.getPropietarioService().loadPropietarios({estado: 'ACTIVO'}).then({
+    return this.getPropietarioService().loadPropietarios({}).then({
       failure: function(errorMessage) {
         return _this.getNotificationService().error("Error", errorMessage);
       }

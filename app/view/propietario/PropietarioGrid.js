@@ -36,7 +36,7 @@ Ext.define("sacec.view.propietario.PropietarioGrid", {
                     
                 }, {
                     header: "Telefono",
-                    dataIndex: "Telefono",
+                    dataIndex: "telefono",
                     flex: 1
                 }, {
                     header: "E-mail",

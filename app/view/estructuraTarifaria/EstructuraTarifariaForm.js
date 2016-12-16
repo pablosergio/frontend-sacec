@@ -11,7 +11,11 @@ Ext.define("sacec.view.estructuraTarifaria.EstructuraTarifariaForm", {
     initComponent: function () {
         var _this = this;
         _this.modeloDepartamentoStore = Ext.create("sacec.store.modeloDepartamento.ModeloDepartamentoStore");
-        //_this.listaTipoTarifa = Ext.create("sacec.store.lista.ListaStore");
+        _this.listaTipoTarifa = Ext.create("sacec.store.lista.ListaByTipoStore");
+        _this.listaGestion = Ext.create("sacec.store.lista.ListaByTipoStore");
+        
+        _this.listaTipoTarifa.proxy.extraParams = { tipo: 'TIPO_TARIFA'};
+        _this.listaGestion.proxy.extraParams = { tipo: 'GESTION', dir: 'ASC', sort: 'listaId'};
         
         Ext.apply(this, {
             bodyStyle: {
@@ -34,41 +38,39 @@ Ext.define("sacec.view.estructuraTarifaria.EstructuraTarifariaForm", {
                             name: "tipoTarifa",
                             fieldLabel: "Tipo Tarifa",
                             labelAlign: 'right',
-                            labelWidth: 120,
+                            labelWidth: 100,
                             labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            //store: _this.listaTipoTarifa.load({ params: {}}),
-                            displayField: "valor",
-                            valueField: "valor",
+                            store: _this.listaTipoTarifa.load(),
+                            displayField: "descripcion",
+                            valueField: "descripcion",
                             emptyText: "Seleccionar...",
                             plugins: ['clearbutton'],
                             allowBlank: false,
                             forceSelection: true,
                             afterLabelTextTpl: this.getRequiredStyle(),
                             margin: 10,
-                            width: 400,
                         }, {
                             xtype: "combobox",
                             name: "gestion",
                             fieldLabel: "Gestion",
                             labelAlign: 'right',
-                            labelWidth: 120,
+                            labelWidth: 100,
                             labelStyle: 'font-weight:bold;font-size:10px!important;',
-                            //store: _this.listaGestion.load({ params: {}}),
-                            displayField: "valor",
-                            valueField: "valor",
+                            store: _this.listaGestion.load(),
+                            displayField: "descripcion",
+                            valueField: "descripcion",
                             emptyText: "Seleccionar...",
                             plugins: ['clearbutton'],
                             allowBlank: false,
                             forceSelection: true,
                             afterLabelTextTpl: this.getRequiredStyle(),
                             margin: 10,
-                            width: 400,
                         }, {
                             xtype: "combobox",
                             name: "modeloDepartamentoId",
                             fieldLabel: "Modelo",
                             labelAlign: 'right',
-                            labelWidth: 120,
+                            labelWidth: 100,
                             labelStyle: 'font-weight:bold;font-size:10px!important;',
                             store: _this.modeloDepartamentoStore.load(),
                             displayField: "tipo",
@@ -79,7 +81,6 @@ Ext.define("sacec.view.estructuraTarifaria.EstructuraTarifariaForm", {
                             forceSelection: true,
                             afterLabelTextTpl: this.getRequiredStyle(),
                             margin: 10,
-                            width: 400,
                             tpl: ['<tpl for =".">',
                                   '<div class="x-boundlist-item">',
                                     '<font color="0e2f44" size= 3.0em">Tipo: {tipo}</font></br>',
@@ -92,7 +93,7 @@ Ext.define("sacec.view.estructuraTarifaria.EstructuraTarifariaForm", {
                             name: "precio",
                             fieldLabel: "Precio",
                             labelAlign: 'right',
-                            labelWidth: 120,
+                            labelWidth: 100,
                             labelStyle: 'font-weight:bold;font-size:10px!important;',
                             emptyText: "Ingresar...",
                             plugins: ['clearbutton'],
@@ -107,8 +108,9 @@ Ext.define("sacec.view.estructuraTarifaria.EstructuraTarifariaForm", {
                             name : 'descripcion',
                             fieldLabel: 'Descripcion',
                             labelAlign: 'right',
-                            labelWidth: 120,
-                            anchor    : '100%'
+                            labelWidth: 100,
+                            labelStyle: 'font-weight:bold;font-size:10px!important;',
+                            margin: "10 10 20 10"
                         } 
                     ]
                 } 

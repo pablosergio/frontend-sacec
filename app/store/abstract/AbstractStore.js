@@ -21,8 +21,6 @@ Ext.define('sacec.store.abstract.AbstractStore', {
         if(isTokenExpired){
             me.notificationService.error("Informacion", "El Token ha expirado. En breve, se le redireccionara a la pagina de autenticacion");
             me.localStorageService.delete('token');
-            me.localStorageService.delete('user');
-            me.localStorageService.delete('menu');
             var task = new Ext.util.DelayedTask(function(){
                 window.location.reload();
             });

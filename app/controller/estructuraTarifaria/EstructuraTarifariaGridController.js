@@ -25,7 +25,7 @@ Ext.define("sacec.controller.estructuraTarifaria.EstructuraTarifariaGridControll
   loadInitialData: function() {
     var _this = this;
     this.getView().setLoading(true);
-    return this.getEstructuraTarifariaService().loadEstructuraTarifaria({estado: 'ACTIVO'}).then({
+    return this.getEstructuraTarifariaService().loadEstructuraTarifaria({}).then({
       failure: function(errorMessage) {
         return _this.getNotificationService().error("Error", errorMessage);
       }

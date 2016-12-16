@@ -2,19 +2,28 @@
  * Created by palvarado on 12/12/2016.
  */
 
-Ext.define('sacec.view.abstract.AbstractBaseGrid', {
+Ext.define('sacec.view.deuda.DeudaBaseGrid', {
     extend: 'Ext.grid.Panel',
-    requires: ["Ext.grid.column.Number", "Ext.grid.column.Date", "Ext.grid.column.Action", "Ext.ux.grid.Printer", "sacec.view.reports.ReportsPDF"],
-    alias: 'widget.sacec-view-abstract-base-grid',
+    requires: ["Ext.ux.form.field.ClearButton", "Ext.grid.column.Number", "Ext.grid.column.Date", "Ext.grid.column.Action", "Ext.ux.grid.Printer", "sacec.view.reports.ReportsPDF"],
+    alias: 'widget.sacec-view-deuda-base-grid',
     columnLines: true,
     viewConfig: {
         stripeRows: true,
         emptyText: "<div class='x-grid-empty-custom'>Todavia no existen registros</div>",
-        deferEmptyText: false
+        deferEmptyText: false,
+        /*getRowClass: function (record, index) {
+            if (record.get('estado') === 'DEBE')
+                return 'trabajo-rechazado';
+            if (record.get('estado') === 'PAGADO') {
+                return 'trabajo-success';
+            }
+            
+        }*/
     },
     initComponent: function () {
         var me = this;
-
+        me.departamentoStore = Ext.create("sacec.store.departamento.DepartamentoStore", { pageSize: 50 });
+        me.meses = ['ENERO', 'FEBRERO', 'MARZO', 'ABRIL', 'MAYO', 'JUNIO', 'JULIO', 'AGOSTO', 'SEPTIEMBRE', 'OCTUBRE', 'NOVIEMBRE', 'DICIEMBRE'];
         me.plugins = [
             Ext.create('Ext.grid.plugin.CellEditing', {
                 clicksToEdit: 1,
@@ -41,9 +50,63 @@ Ext.define('sacec.view.abstract.AbstractBaseGrid', {
                 itemId: 'topToolbar',
                 items: [
                     {
-                        itemId: 'addRecord',
-                        text: 'Nuevo',
-                        iconCls: 'add'
+                        xtype: 'tbseparator'
+                    }, {
+                        xtype: 'button',
+                        itemId: 'btnPagar',
+                        text: 'Pagar',
+                        iconCls: 'payment-icon',
+                        scale: 'medium'
+                    },
+                    {
+                        xtype: 'tbseparator'
+                    },
+                    {
+                        xtype: 'button',
+                        itemId: 'btnImprimirRecibo',
+                        text: 'Recibo',
+                        iconCls: 'impresora',
+                        scale: 'medium',
+                    },
+                    {
+                        xtype: 'tbseparator'
+                    }, {
+                        xtype: 'combobox',
+                        itemId: 'comboDepartamento',
+                        fieldLabel: "Departamento",
+                        labelAlign: 'right',
+                        labelWidth: 120,
+                        labelStyle: 'font-weight:bold;font-size:10px!important;',
+                        store: me.departamentoStore.load(),
+                        displayField: "nombre",
+                        valueField: "departamentoId",
+                        emptyText: "Seleccionar...",
+                        forceSelection: true,
+                        queryMode: 'local',
+                        plugins: ['clearbutton'],
+                        width: 300,
+                        tpl: ['<tpl for =".">',
+                                  '<div class="x-boundlist-item">',
+                                    '<font color="0e2f44" size= 2.8em"><b>{nombre}</b></strong></br>',
+                                    '{propietario.nombre} {propietario.apellido}</br>',
+                                  '</div>',
+                                  '</tpl>'].join('')  
+                    },
+                    {
+                        xtype: 'combobox',
+                        itemId: 'comboMes',
+                        name: "mes",
+                        fieldLabel: "Mes",
+                        labelAlign: 'right',
+                        labelWidth: 80,
+                        labelStyle: 'font-weight:bold;font-size:10px!important;',
+                        store: me.meses,
+                        displayField: "value",
+                        valueField: "value",
+                        emptyText: "Seleccionar...",
+                        plugins: ['clearbutton'],
+                        forceSelection: true,
+                        margin: "0 0 0 0",
                     },
                     {
                         xtype: 'tbseparator'
@@ -51,29 +114,25 @@ Ext.define('sacec.view.abstract.AbstractBaseGrid', {
                     {
                         xtype: 'button',
                         itemId: 'filterGrid',
-                        text: 'Filtrar',
-                        glyph: 0xf0b0,
-                        hidden: true
+                        text: 'Busar...',
+                        iconCls: 'zoom',
+                        margin: "0 0 0 10"
+                    },
+                    {
+                        xtype: 'tbseparator'
                     },
                     {
                         xtype: 'button',
                         itemId: 'clearFilter',
                         text: 'Quitar Filtros',
                         iconCls: 'filter_delete',
-                        hidden: true
+                        margin: "0 0 0 0"
                     },
                     {
                         xtype: 'tbseparator'
                     },
                     {
                         xtype: me.textoFiltrado
-                    },
-                    {
-                        xtype: 'button',
-                        itemId: 'historyRecord',
-                        text: 'Historico',
-                        iconCls: 'clock',
-                        hidden: true
                     },
                     {
                         xtype: 'tbseparator'
@@ -134,27 +193,7 @@ Ext.define('sacec.view.abstract.AbstractBaseGrid', {
                 format: 'd-m-Y H:i',
                 filter: true,
                 align: 'center'
-            },
-            /*{
-                text: 'Estado',
-                width: 80,
-                align: 'center',
-                dataIndex: 'estado',
-            },*/
-            {
-	            xtype: "actioncolumn",
-	            itemId: "deleteActionColumn",
-	            text: "Eliminar",
-	            width: 50,
-	            align: "center",
-	            sortable: false,
-	            items: [{
-	              itemId: "recordDeleteButton",
-	              icon: "resources/icons/delete.png",
-	              tooltip: "Delete Scenario",
-	              iconCls: "mousepointer .x-grid-center-icon"
-	             }]
-             }
+            }
         ]);
 
         me.callParent(arguments);

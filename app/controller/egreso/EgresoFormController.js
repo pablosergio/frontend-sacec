@@ -1,19 +1,19 @@
 /* Desarrollado por Pablo Sergio Alvarado G. */
 
-Ext.define("sacec.controller.estructuraTarifaria.EstructuraTarifariaFormController", {
+Ext.define("sacec.controller.egreso.EgresoFormController", {
   extend: "sacec.controller.AbstractBaseFormController",
   inject: [
-    "estructuraTarifariaContext",
-    "estructuraTarifariaService"
+    "egresoContext",
+    "egresoService"
   ],
   config:{
-    estructuraTarifariaContext: null,
-    estructuraTarifariaService: null,
-    estructuraTarifaria: null
+    egresoContext: null,
+    egresoService: null,
+    egreso: null
   },
   observe: {
-     estructuraTarifariaContext: {
-        estructuraTarifariaOpened: "onEstructuraTarifariaOpened"  
+     egresoContext: {
+        egresoOpened: "onEgresoOpened"  
      }
   },
   init: function() {
@@ -21,13 +21,13 @@ Ext.define("sacec.controller.estructuraTarifaria.EstructuraTarifariaFormControll
   },
  
   
-  onEstructuraTarifariaOpened: function(estructuraTarifaria) {
+  onEgresoOpened: function(egreso) {
     var _this = this;
     _this.getView().getForm().reset();
-    _this.getView().setTitle('Datos de la Estructura Tarifaria');
-    _this.setEstructuraTarifaria(estructuraTarifaria);
-    _this.getView().loadRecord(_this.getEstructuraTarifaria());
-    if (_this.getEstructuraTarifariaService().isNewEstructuraTarifaria(estructuraTarifaria)) {
+    _this.getView().setTitle('Datos del Egreso');
+    _this.setEgreso(egreso);
+    _this.getView().loadRecord(_this.getEgreso());
+    if (_this.getEgresoService().isNewEgreso(egreso)) {
       _this.getView().setSoloLecturaTodos(false);
       _this.getEditButton().setVisible(false);
       _this.getCopyButton().setVisible(false);
@@ -43,26 +43,26 @@ Ext.define("sacec.controller.estructuraTarifaria.EstructuraTarifariaFormControll
   },
  
   onSaveButtonClick: function() {
-    this.getView().getForm().updateRecord(this.getEstructuraTarifaria());
-    return this.saveEstructuraTarifaria(this.getEstructuraTarifaria());
+    this.getView().getForm().updateRecord(this.getEgreso());
+    return this.saveEgreso(this.getEgreso());
   },
  
-  saveEstructuraTarifaria: function(estructuraTarifaria) {
+  saveEgreso: function(egreso) {
     var _this = this;
     this.getView().setLoading(true);
-    return this.getEstructuraTarifariaService().saveEstructuraTarifaria(estructuraTarifaria).then({
+    return this.getEgresoService().saveEgreso(egreso).then({
       success: function(res) {
-        _this.getView().setTitle('Datos de la Estructura Tarifaria');
+        _this.getView().setTitle('Datos del Egreso');
         _this.getCopyButton().setVisible(true);
         _this.getEditButton().setVisible(true);
         _this.getSaveButton().setVisible(false);
         _this.getCancelButton().setVisible(false)
         _this.getView().setSoloLecturaTodos(true);
-        _this.getEstructuraTarifariaContext().estructuraTarifariaCreated();
-        return _this.getNotificationService().success("Guardar ", res.msg);
+        _this.getEgresoContext().egresoCreated();
+        return _this.getNotificationService().success("Guardar Egreso", res.msg);
       },
       failure: function(errorMessage) {
-        return _this.getNotificationService().error("Guardar ", errorMessage);
+        return _this.getNotificationService().error("Guardar Egreso", errorMessage);
       }
     }).always(function() {
       return _this.getView().setLoading(false);
@@ -70,16 +70,16 @@ Ext.define("sacec.controller.estructuraTarifaria.EstructuraTarifariaFormControll
   },
  
   onCopyButtonClick: function() {
-    var copyOfEstructuraTarifaria;
-    copyOfEstructuraTarifaria = this.getEstructuraTarifaria().copy();
-    copyOfEstructuraTarifaria.set('estructuraTarifariaId', null);
-    return this.onEstructuraTarifariaOpened(copyOfEstructuraTarifaria);
+    var copyOfEgreso;
+    copyOfEgreso = this.getEgreso().copy();
+    copyOfEgreso.set('egresoId', null);
+    return this.onEgresoOpened(copyOfEgreso);
   },
 
   onCancelButtonClick: function(){
     var _this = this;
-    _this.getView().loadRecord(_this.getEstructuraTarifaria());
-    if (_this.getEstructuraTarifariaService().isNewEstructuraTarifaria(_this.getEstructuraTarifaria())) {
+    _this.getView().loadRecord(_this.getEgreso());
+    if (_this.getEgresoService().isNewEgreso(_this.getEgreso())) {
       _this.getEditButton().setVisible(false);
       _this.getCopyButton().setVisible(false);
     }else{
@@ -89,7 +89,7 @@ Ext.define("sacec.controller.estructuraTarifaria.EstructuraTarifariaFormControll
     _this.getCancelButton().setVisible(false);
     _this.getSaveButton().setVisible(false);
     _this.getView().setSoloLecturaTodos(true);
-    _this.getEstructuraTarifariaContext().estructuraTarifariaCanceled();
+    _this.getEgresoContext().egresoCanceled();
   },
 
   onEditButtonClick: function(){

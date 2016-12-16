@@ -42,6 +42,12 @@ Ext.define("sacec.config.AppConfig", {
         login: {
           proxyId: "/login"
         },
+        listas: {
+          proxyId: "/listas"
+        },
+        listaByTipo: {
+          proxyId: "/listabytipo"
+        },
         propietarios: {
           proxyId: "/propietarios"
         },
@@ -53,6 +59,18 @@ Ext.define("sacec.config.AppConfig", {
         },
         estructuraTarifaria: {
           proxyId: "/estructuraTarifaria"
+        },
+        deudas: {
+          proxyId: "/deudas"
+        },
+        deudaByTipoTarifa: {
+          proxyId: "/deudabytipotarifa"
+        },
+        pagos: {
+          proxyId: "/pagos"
+        },
+        egresos: {
+          proxyId: "/egresos"
         },
       },
       defaults: {
