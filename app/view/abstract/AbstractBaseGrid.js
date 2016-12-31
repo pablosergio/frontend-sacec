@@ -53,14 +53,14 @@ Ext.define('sacec.view.abstract.AbstractBaseGrid', {
                         itemId: 'filterGrid',
                         text: 'Filtrar',
                         glyph: 0xf0b0,
-                        hidden: true
+                        //hidden: true
                     },
                     {
                         xtype: 'button',
                         itemId: 'clearFilter',
                         text: 'Quitar Filtros',
                         iconCls: 'filter_delete',
-                        hidden: true
+                        //hidden: true
                     },
                     {
                         xtype: 'tbseparator'

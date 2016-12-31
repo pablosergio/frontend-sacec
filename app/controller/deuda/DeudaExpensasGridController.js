@@ -59,7 +59,7 @@ Ext.define("sacec.controller.deuda.DeudaExpensasGridController", {
     _this.getBtnPagar().disable();
     _this.getBtnImprimirRecibo().disable();
     this.getView().setLoading(true);
-    return this.getDeudaService().loadDeudas({tipoTarifa: 'EXPENSAS'}).then({
+    return this.getDeudaService().loadDeudas({tipoTarifa: 'EXPENSAS', estado: 'DEBE'}).then({
       failure: function(errorMessage) {
         return _this.getNotificationService().error("Error", errorMessage);
       }
@@ -112,7 +112,7 @@ Ext.define("sacec.controller.deuda.DeudaExpensasGridController", {
     _this = this;
     _this.getComboDepartamento().setValue(null);
     _this.getComboMes().setValue(null);
-    _this.getView().getStore().proxy.extraParams = { };
+    _this.getView().getStore().proxy.extraParams = { tipoTarifa: 'EXPENSAS', estado: 'DEBE'};
     _this.getView().getStore().load({
       callback: function(records, operation, success) {
         if (success) {
@@ -185,7 +185,7 @@ Ext.define("sacec.controller.deuda.DeudaExpensasGridController", {
               pago_id: _this.getDeuda().get('pagoId'),              //nombre : _this.getLocalStorageService().get('user').nombre
               nombre : _username
             },
-            ruta: 'rpt_imprimir_pago'
+            ruta: 'rpt_recibo_pago'
     });
     panel.show();
           

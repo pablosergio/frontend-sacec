@@ -32,7 +32,7 @@ Ext.define("sacec.config.AppConfig", {
       defaults: {
         urlPrefix: "http://localhost:8081/restapi",
         /* Los nombres de los reportes se encuentran en el ServicioReporte */
-        urlPrefixReporte: "http://170.0.0.1:8080",
+        urlPrefixReporte: "http://localhost:8080",
         urlSuffix: "",
         dataRoot: ""
       }
@@ -76,7 +76,7 @@ Ext.define("sacec.config.AppConfig", {
       defaults: {
         urlPrefix: "http://localhost:8081/restapi",
         /* Los nombres de los reportes se encuentran en el ServicioReporte */
-        urlPrefixReporte: "http://170.0.0.1:8080",
+        urlPrefixReporte: "http://localhost:8080",
         urlSuffix: "",
         dataRoot: ""
       }

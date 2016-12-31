@@ -70,14 +70,15 @@ Ext.define("sacec.controller.pago.PagoFormController", {
         success: function(res){
           _this.getView().up('window').close();
           _this.getPagoContext().pagoCreated({});
+          console.dir(res);
           var panel = Ext.create('sacec.view.reports.Reports', {
             onlyPrint: true,
             parametros: {
-              pago_id: 1,
+              pago_id: res.data.pagoId,
               //nombre : _this.getLocalStorageService().get('user').nombre
               nombre : 'palvarado'
             },
-            ruta: 'rpt_imprimir_pago'
+            ruta: 'rpt_recibo_pago'
           });
           panel.show();
           return _this.getNotificationService().success('Guardar Pago', res.msg);

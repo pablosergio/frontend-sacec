@@ -46,7 +46,7 @@ Ext.define("sacec.controller.AbstractBaseGridController", {
   
   onClearFilterClick: function(){
     var _this = this;
-    _this.getView().store.proxy.extraParams = {estado: 'ACTIVO'};
+    _this.getView().store.proxy.extraParams = {};
     _this.getView().store.load({ 
       callback: function(records, operation, success){
         if(success){

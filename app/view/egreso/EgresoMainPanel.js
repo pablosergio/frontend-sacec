@@ -21,6 +21,7 @@ Ext.define( 'sacec.view.egreso.EgresoMainPanel', {
         xtype: 'sacec-view-egreso-form',
         region:'east',
         width: '35%',
+        collapsible: true,
         itemId: 'panelCollapsibleEgreso'
     }],
 

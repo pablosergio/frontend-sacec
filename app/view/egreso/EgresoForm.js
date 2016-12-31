@@ -58,7 +58,7 @@ Ext.define("sacec.view.egreso.EgresoForm", {
                             }
                         }, {
                             xtype: "datefield",
-                            name: "fechaRegistro",
+                            name: "fechaEgreso",
                             fieldLabel: "Fecha del Egreso",
                             labelAlign: 'right',
                             labelWidth: 120,

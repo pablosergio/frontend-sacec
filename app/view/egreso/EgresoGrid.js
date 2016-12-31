@@ -18,6 +18,13 @@ Ext.define("sacec.view.egreso.EgresoGrid", {
             store: _this.getEgresoStore(),
             columns: [
                 {
+                    xtype: 'datecolumn',
+                    header: "Fecha Egreso",
+                    dataIndex: "fechaEgreso",
+                    flex: 1,
+                    align: 'center',
+                    format: 'd-m-Y'
+                }, {
                     header: "Tipo Egreso",
                     dataIndex: "descripcion",
                     flex: 1,
